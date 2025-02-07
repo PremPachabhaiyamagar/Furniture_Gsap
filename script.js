@@ -90,7 +90,7 @@ ScrollTrigger.create({
   start: "top top ",
   end: "bottom bottom",
   pin: true,
-  //   pinSpacing: false,
+  pinSpacing: false,
   scrub: 2,
   animation: gsap.to(".cover > img", {
     clipPath: "circle(100% at 50% 50%)",
@@ -139,8 +139,6 @@ mm.add("(min-width: 600px)", () => {
   });
 });
 // animate image section
-// const GridWrapper = gsap.utils.toArray(".grid-items");
-// GridWrapper.forEach((wrapper) => {
 const boxes = gsap.utils.toArray(".box");
 boxes.forEach((box) => {
   const animation = gsap.from(box, {
@@ -157,8 +155,6 @@ boxes.forEach((box) => {
     animation: animation,
   });
 });
-//   });
-// });
 
 // aniamate heading section
 const heading = document.querySelector("#furniture-section  h1");
@@ -188,9 +184,15 @@ sections.forEach((section, index) => {
     end: "bottom top",
     onEnter: () => {
       updateHeading(index);
+      if (index === 0) {
+        document.body.classList.remove("animateBackground");
+      }
     },
     onEnterBack: () => {
       updateHeading(index);
+      if (index === 0) {
+        document.body.classList.add("animateBackground");
+      }
     },
   });
 });

@@ -139,8 +139,7 @@ a {
   }
   & .gallery {
     position: relative;
-    display: none;
-    /* display: flex; */
+    display: flex;
     padding: 2rem 0;
     & .left {
       width: 50%;
@@ -308,8 +307,7 @@ a {
         align-items: center;
         gap: 2px;
         & .mobileContent {
-          /* display: block; */
-          /* border: 1px solid red; */
+          display: block;
         }
         & .mobilePhoto {
           &.red {
