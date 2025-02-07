@@ -153,7 +153,7 @@ boxes.forEach((box) => {
     scrub: 2,
     start: `top bottom`,
     end: "bottom top",
-    markers: true,
+    markers: false,
     animation: animation,
   });
 });
@@ -161,7 +161,40 @@ boxes.forEach((box) => {
 // });
 
 // aniamate heading section
-// document.addEventListener("DOMContentLoaded", () => {
-//   const heading = document.querySelector(".furniture-Title  h1");
-//   console.log(heading);
-// });
+const heading = document.querySelector("#furniture-section  h1");
+const sections = gsap.utils.toArray(".grid-wrapper");
+
+const heading_tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#furniture-section > .container",
+    start: "top 50%",
+    end: "top 50%",
+    ease: "ease",
+    scrub: 2,
+    markers: true,
+    onEnter: () => {
+      gsap.set(heading, { position: "fixed", bottom: 0, zIndex: -1 });
+    },
+    onEnterBack: () => {
+      gsap.set(heading, { position: "relative", bottom: 0 });
+    },
+  },
+});
+
+sections.forEach((section, index) => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: "bottom-=20% bottom",
+    end: "bottom top",
+    onEnter: () => {
+      updateHeading(index);
+    },
+    onEnterBack: () => {
+      updateHeading(index);
+    },
+  });
+});
+function updateHeading(i) {
+  const headingTexts = ["Furniture", "Decor", "Tech"];
+  heading.textContent = headingTexts[i];
+}
